@@ -42,7 +42,7 @@ export async function POST(request: Request) {
                 getRandomInterviewCover(),
             createdAt: new Date().toISOString(),
         }
-
+        
         await db.collection("interview").add(interview);
 
         return Response.json({success: true}, {status: 200});
