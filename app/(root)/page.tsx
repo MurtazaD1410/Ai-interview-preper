@@ -2,9 +2,9 @@ import React from 'react'
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import {dummyInterviews} from "@/constants";
 import InterviewCard from "@/components/InterviewCard";
-import {getCurrentUser, getInterviewsByUserId, getLatestInterviews} from "@/lib/actions/auth.actions";
+import {getCurrentUser,} from "@/lib/actions/auth.actions";
+import {getInterviewsByUserId, getLatestInterviews} from "@/lib/actions/general.action";
 
 const Page = async () => {
     const user = await getCurrentUser()
@@ -47,7 +47,7 @@ const Page = async () => {
             <section className={'flex flex-col gap-6 mt-8'}>
                 <h2>Take an Interviews</h2>
                 <div className={"interviews-section"}>
-                    {hasUpcomingInterviews ? latestInterviews.map((interview) => {
+                    {hasUpcomingInterviews ? latestInterviews?.map((interview) => {
                         return (<InterviewCard {...interview} key={interview.id}/>)
                     }) : (
                         <p>There are no interviews available</p>

@@ -7,7 +7,7 @@ import Link from "next/link";
 import {getRandomInterviewCover} from "@/lib/utils";
 import DisplayTechIcons from "@/components/DisplayTechIcons";
 
-const InterviewCard = ({interviewId, userId, techstack, type, createdAt, role}: InterviewCardProps) => {
+const InterviewCard = ({id, userId, techstack, type, createdAt, role}: InterviewCardProps) => {
     const feedback = null as Feedback | null
     const notmalizeType = /mix/gi.test(type) ? "Mixed" : type;
     const formattedDate = dayjs(feedback?.createdAt || createdAt || Date.now()).format("MMM D, YYYY");
@@ -34,14 +34,20 @@ const InterviewCard = ({interviewId, userId, techstack, type, createdAt, role}: 
                             </div>
                         </div>
                     </div>
-                    <p className={"line-clamp-2 mt-5"}>{feedback?.finalAssessment || "You haven't takent the interview yet. Take it now to improve your skills."}</p>
+                    <p className={"line-clamp-2 mt-5"}>{feedback?.finalAssessment || "You haven't taken the interview yet. Take it now to improve your skills."}</p>
                 </div>
                 <div className={"flex flex-row justify-between"}>
                     <DisplayTechIcons techStack={techstack}/>
-                    <Button className={'btn-primary'}>
-                        <Link href={feedback ? `/interview/${interviewId}/feedback` : `/interview/${interviewId}`}/>
-                        {feedback ? "Check feedback" : "View Interview"}
-                    </Button>
+                    {/*<Button className={'btn-primary'}>*/}
+                    {/*    <Link href={feedback ? `/interview/${id}/feedback` : `/interview/${id}`}/>*/}
+                    {/*    {feedback ? "Check feedback" : "View Interview"}*/}
+                    {/*</Button>*/}
+                    <Link href={feedback ? `/interview/${id}/feedback` : `/interview/${id}`}>
+                        <Button className="btn-primary">
+                            {feedback ? "Check feedback" : "View Interview"}
+                        </Button>
+                    </Link>
+
                 </div>
             </div>
         </div>
